@@ -1,5 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
 import CustomText from "../ui/CustomText";
 
 type Props = {
@@ -9,18 +14,18 @@ type Props = {
 
 const CategoryCard = ({ title, imageUri }: Props) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => alert("Hello!")}>
       <ImageBackground
         source={{ uri: imageUri }}
-        style={styles.image}
-        imageStyle={{ resizeMode: "contain", right: -20 }}
+        style={styles.imageBg}
+        imageStyle={styles.imageStyle}
       />
       <View style={styles.textContainer}>
         <CustomText type="medium" style={styles.title}>
           {title}
         </CustomText>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -31,12 +36,18 @@ const styles = StyleSheet.create({
     width: "48%",
     height: 152,
     borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: "rgba(41, 187, 137, 0.18)",
     backgroundColor: "#F8FAF8",
     overflow: "hidden",
     justifyContent: "center",
   },
-  image: {
+  imageBg: {
     ...StyleSheet.absoluteFillObject,
+  },
+  imageStyle: {
+    resizeMode: "contain",
+    right: -25,
   },
   textContainer: {
     paddingHorizontal: 12,

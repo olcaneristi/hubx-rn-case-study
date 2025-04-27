@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import CustomText from "../ui/CustomText";
 
 type PremiumFeatureCardProps = {
@@ -14,35 +14,13 @@ const PremiumFeatureCard = ({
   icon,
 }: PremiumFeatureCardProps) => {
   return (
-    <View
-      style={{
-        marginVertical: 16,
-        marginRight: 8,
-        borderRadius: 14,
-        padding: 16,
-        minWidth: 170,
-        minHeight: 130,
-        backgroundColor: "rgba(255, 255, 255, 0.1)",
-      }}
-    >
+    <View style={styles.cardContainer}>
       {icon}
-      <View style={{ paddingTop: 12 }}>
-        <CustomText
-          type="medium"
-          style={{ color: "white", fontSize: 22, letterSpacing: 0.38 }}
-        >
+      <View style={styles.textContainer}>
+        <CustomText type="medium" style={styles.title}>
           {title}
         </CustomText>
-        <CustomText
-          type="regular"
-          style={{
-            fontSize: 14,
-            color: "white",
-            opacity: 0.7,
-            paddingTop: 4,
-            letterSpacing: -0.08,
-          }}
-        >
+        <CustomText type="regular" style={styles.description}>
           {description}
         </CustomText>
       </View>
@@ -51,3 +29,30 @@ const PremiumFeatureCard = ({
 };
 
 export default PremiumFeatureCard;
+
+const styles = StyleSheet.create({
+  cardContainer: {
+    marginVertical: 16,
+    marginRight: 8,
+    borderRadius: 14,
+    padding: 16,
+    minWidth: 170,
+    minHeight: 130,
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+  },
+  textContainer: {
+    paddingTop: 12,
+  },
+  title: {
+    color: "white",
+    fontSize: 22,
+    letterSpacing: 0.38,
+  },
+  description: {
+    fontSize: 14,
+    color: "white",
+    opacity: 0.7,
+    paddingTop: 4,
+    letterSpacing: -0.08,
+  },
+});
