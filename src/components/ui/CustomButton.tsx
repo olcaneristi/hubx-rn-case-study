@@ -1,12 +1,45 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  View,
+  ViewStyle,
+} from "react-native";
 import React from "react";
+import CustomText from "./CustomText";
+import { fonts } from "../../constants/fonts";
 
-type Props = {};
+type FontType = keyof typeof fonts;
 
-const CustomButton = ({ children, style, ...props }) => {
+type Props = {
+  text?: string;
+  textStyle?: TextStyle;
+  textType?: FontType;
+  style?: ViewStyle;
+  hasChildren?: boolean;
+  children?: React.ReactNode;
+} & TouchableOpacityProps;
+
+const CustomButton: React.FC<Props> = ({
+  text,
+  textStyle,
+  textType = "regular",
+  style,
+  hasChildren = false,
+  children,
+  ...props
+}) => {
   return (
     <TouchableOpacity {...props} style={[styles.button, style]}>
-      {children}
+      {hasChildren
+        ? children
+        : text && (
+            <CustomText style={textStyle} type={textType}>
+              {text}
+            </CustomText>
+          )}
     </TouchableOpacity>
   );
 };
@@ -19,5 +52,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#28AF6E",
+    marginHorizontal: 24,
+    marginBottom: 8,
   },
 });
