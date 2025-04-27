@@ -1,6 +1,7 @@
 import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 import React from "react";
 import IconSearch from "../../../assets/icons/IconSearch";
+import { colors } from "../../constants/colors";
 
 type CustomSearchBarProps = {
   placeholder?: string;
@@ -16,7 +17,7 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({
       <TextInput
         style={styles.searchInput}
         placeholder={placeholder}
-        placeholderTextColor="#AFAFAF"
+        placeholderTextColor={colors.PLACEHOLDER_TEXT}
         {...props}
       />
     </View>
@@ -29,20 +30,20 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.88)",
+    backgroundColor: colors.BACKGROUND_SEARCHBAR,
     borderRadius: 12,
     paddingHorizontal: 16,
     minHeight: 48,
     marginTop: 12,
     borderWidth: 0.5,
-    borderColor: "#3C3C4340",
+    borderColor: colors.BORDER_SEARCHBAR,
   },
   icon: {
     marginRight: 12,
   },
   searchInput: {
     fontSize: 16,
-    color: "#13231B",
+    color: colors.TEXT_PRIMARY,
     flex: 1,
     fontFamily: "Rubik-Regular",
     letterSpacing: 0.07,

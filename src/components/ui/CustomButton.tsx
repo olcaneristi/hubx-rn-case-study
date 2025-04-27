@@ -10,6 +10,7 @@ import {
 import React from "react";
 import CustomText from "./CustomText";
 import { fonts } from "../../constants/fonts";
+import { colors } from "../../constants/colors";
 
 type FontType = keyof typeof fonts;
 
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#28AF6E",
+    backgroundColor: colors.PRIMARY_GREEN,
     marginHorizontal: 24,
     marginBottom: 8,
   },

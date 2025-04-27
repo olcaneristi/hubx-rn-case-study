@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CustomText from "../ui/CustomText";
+import { colors } from "../../constants/colors";
 
 type Props = {
   title: string;
@@ -37,8 +38,8 @@ const styles = StyleSheet.create({
     height: 152,
     borderRadius: 20,
     borderWidth: 0.5,
-    borderColor: "rgba(41, 187, 137, 0.18)",
-    backgroundColor: "#F8FAF8",
+    borderColor: colors.BORDER_CATEGORY_CARD,
+    backgroundColor: colors.BACKGROUND_DEFAULT,
     overflow: "hidden",
     justifyContent: "center",
   },
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     width: "75%",
   },
   title: {
-    color: "rgba(19, 35, 27, 1)",
+    color: colors.PAGINATION_ACTIVE,
     fontSize: 17,
   },
 });

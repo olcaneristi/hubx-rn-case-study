@@ -12,6 +12,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CustomText from "./CustomText";
 import CustomSearchBar from "./CustomSearchBar";
 import { getGreeting } from "../../utils/helper";
+import { colors } from "../../constants/colors";
 
 const CustomHeader = () => {
   const insets = useSafeAreaInsets();
@@ -43,12 +44,12 @@ const styles = StyleSheet.create({
   },
   smallText: {
     fontSize: 16,
-    color: "#13231B",
+    color: colors.TEXT_PRIMARY,
     letterSpacing: 0.07,
   },
   largeText: {
     fontSize: 24,
-    color: "#13231B",
+    color: colors.TEXT_PRIMARY,
     letterSpacing: 0.35,
   },
 });

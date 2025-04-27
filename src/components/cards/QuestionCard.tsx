@@ -1,6 +1,7 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import CustomText from "../ui/CustomText";
+import { colors } from "../../constants/colors";
 
 type Props = {
   title: string;
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     minHeight: 180,
     borderRadius: 12,
     overflow: "hidden",
-    backgroundColor: "#000",
+    backgroundColor: colors.BLACK,
   },
   image: {
     ...StyleSheet.absoluteFillObject,
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   title: {
-    color: "#fff",
+    color: colors.TEXT_WHITE,
     fontSize: 16,
     letterSpacing: -0.24,
     minHeight: 30,

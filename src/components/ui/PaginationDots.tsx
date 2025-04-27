@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
+import { colors } from "../../constants/colors";
 
 type PaginationDotsProps = {
   totalSteps: number;
@@ -40,9 +41,9 @@ const styles = StyleSheet.create({
   activeDot: {
     width: 10,
     height: 10,
-    backgroundColor: "rgba(19, 35, 27, 1)",
+    backgroundColor: colors.PAGINATION_ACTIVE,
   },
   inactiveDot: {
-    backgroundColor: "#D3D3D3",
+    backgroundColor: colors.PAGINATION_INACTIVE,
   },
 });

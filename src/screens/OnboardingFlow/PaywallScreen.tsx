@@ -20,6 +20,7 @@ import { useNavigation } from "@react-navigation/native";
 import PremiumFeatureCard from "../../components/cards/PremiumFeatureCard";
 import { setOnboardingCompleted } from "../../api/storage";
 import CustomRadioGroup from "../../components/ui/CustomRadioGroup";
+import { colors } from "../../constants/colors";
 
 type Props = {};
 
@@ -199,7 +200,7 @@ const styles = StyleSheet.create({
   imageBgContainer: {
     flex: 1,
     height: Platform.OS === "android" ? "50%" : "55%",
-    backgroundColor: "#101E17",
+    backgroundColor: colors.BACKGROUND_DARK,
     paddingLeft: 24,
   },
   iconContainer: {
@@ -209,15 +210,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "20%",
     right: "5%",
-    backgroundColor: "transparent",
+    backgroundColor: colors.TRANSPARENT,
   },
   title: {
-    color: "white",
+    color: colors.TEXT_WHITE,
     fontSize: 30,
   },
   subTitle: {
     fontSize: 20,
-    color: "white",
+    color: colors.TEXT_WHITE,
     opacity: 0.7,
     paddingTop: 4,
   },
@@ -225,7 +226,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   buttonText: {
-    color: "white",
+    color: colors.TEXT_WHITE,
     fontSize: 16,
   },
   buttonContainer: {
@@ -233,7 +234,7 @@ const styles = StyleSheet.create({
     marginLeft: 0,
   },
   informationText: {
-    color: "rgba(255, 255, 255, 0.52)",
+    color: colors.TEXT_WHITE_HALF_OPACITY,
     fontSize: 10,
     textAlign: "center",
     paddingRight: 24,
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
     paddingRight: 24,
   },
   termsListTitle: {
-    color: "rgba(255, 255, 255, 0.52)",
+    color: colors.TEXT_WHITE_HALF_OPACITY,
     fontSize: 11,
     textAlign: "center",
   },

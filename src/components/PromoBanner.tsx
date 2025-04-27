@@ -3,6 +3,7 @@ import React from "react";
 import CustomText from "./ui/CustomText";
 import IconMessage from "../../assets/icons/IconMessage";
 import IconArrow from "../../assets/icons/IconArrow";
+import { colors } from "../constants/colors";
 
 type Props = {};
 
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     marginVertical: 24,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    backgroundColor: "rgba(36, 32, 26, 1)",
+    backgroundColor: colors.BACKGROUND_PROMO,
   },
   content: {
     flexDirection: "row",
@@ -49,12 +50,12 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   title: {
-    color: "rgba(229, 201, 144, 1)",
+    color: colors.TEXT_PROMO_TITLE,
     fontSize: 17,
     letterSpacing: -0.32,
   },
   subtitle: {
-    color: "rgba(245, 194, 91, 1)",
+    color: colors.TEXT_PROMO_SUBTITLE,
     fontSize: 14,
   },
 });

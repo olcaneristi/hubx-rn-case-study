@@ -2,6 +2,7 @@ import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import CustomText from "../ui/CustomText";
+import { colors } from "../../constants/colors";
 
 type PricingOption = {
   id: number;
@@ -29,8 +30,14 @@ const CustomRadioGroup = ({ options, selectedPlan, onSelectPlan }: Props) => {
           <LinearGradient
             colors={
               selectedPlan === option.key
-                ? ["rgba(40, 175, 110, 0)", "rgba(40, 175, 110, 0.24)"]
-                : ["rgba(255, 255, 255, 0.05)", "rgba(255, 255, 255, 0.05)"]
+                ? [
+                    colors.BACKGROUND_RADIO_SELECTED_GRADIENT_START,
+                    colors.BACKGROUND_RADIO_SELECTED_GRADIENT_END,
+                  ]
+                : [
+                    colors.BACKGROUND_RADIO_UNSELECTED_GRADIENT,
+                    colors.BACKGROUND_RADIO_UNSELECTED_GRADIENT,
+                  ]
             }
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
@@ -40,8 +47,8 @@ const CustomRadioGroup = ({ options, selectedPlan, onSelectPlan }: Props) => {
                 borderWidth: selectedPlan === option.key ? 1.5 : 1,
                 borderColor:
                   selectedPlan === option.key
-                    ? "rgba(40, 175, 110, 1)"
-                    : "rgba(255, 255, 255, 0.3)",
+                    ? colors.BORDER_RADIO_SELECTED
+                    : colors.BORDER_RADIO_UNSELECTED,
               },
             ]}
           >
@@ -58,12 +65,12 @@ const CustomRadioGroup = ({ options, selectedPlan, onSelectPlan }: Props) => {
                   {
                     backgroundColor:
                       selectedPlan === option.key
-                        ? "rgba(40, 175, 110, 1)"
-                        : "rgba(255, 255, 255, 0.15)",
+                        ? colors.RADIO_CIRCLE_SELECTED
+                        : colors.RADIO_CIRCLE_UNSELECTED,
                     borderColor:
                       selectedPlan === option.key
-                        ? "rgba(40, 175, 110, 1)"
-                        : "rgba(255, 255, 255, 0.15)",
+                        ? colors.RADIO_CIRCLE_SELECTED
+                        : colors.RADIO_CIRCLE_UNSELECTED,
                   },
                 ]}
               >
@@ -105,13 +112,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     right: 0,
-    backgroundColor: "rgba(40, 175, 110, 1)",
+    backgroundColor: colors.BORDER_RADIO_SELECTED,
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderBottomLeftRadius: 14,
   },
   discountText: {
-    color: "#fff",
+    color: colors.TEXT_WHITE,
     fontSize: 12,
   },
   radioButtonContainer: {
@@ -136,15 +143,14 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 6,
-    backgroundColor: "white",
+    backgroundColor: colors.BACKGROUND_WHITE,
   },
   radioButtonTitle: {
-    color: "#fff",
+    color: colors.TEXT_WHITE,
     fontSize: 18,
-    fontWeight: "bold",
   },
   radioButtonDesc: {
-    color: "#aaa",
+    color: colors.TEXT_LIGHT,
     fontSize: 14,
     marginTop: 4,
   },

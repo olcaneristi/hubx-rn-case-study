@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { getOnboardingCompleted } from "../api/storage";
-
+import { colors } from "../constants/colors";
 import CustomText from "../components/ui/CustomText";
 
 import GetStartedIntroScreen from "../../src/screens/OnboardingFlow/GetStartedIntroScreen";
@@ -40,21 +40,29 @@ function BottomTabs() {
           let iconStyle = {};
 
           if (route.name === "HomeScreen") {
-            iconName = focused ? <IconHome color={"#28AF6E"} /> : <IconHome />;
+            iconName = focused ? (
+              <IconHome color={colors.PRIMARY_GREEN} />
+            ) : (
+              <IconHome />
+            );
           } else if (route.name === "ScanPlantScreen") {
             iconName = <IconScan />;
             iconStyle = styles.scanIconContainer;
           } else if (route.name === "DiagnoseScreen") {
             iconName = focused ? (
-              <IconDiagnose color={"#28AF6E"} />
+              <IconDiagnose color={colors.PRIMARY_GREEN} />
             ) : (
               <IconDiagnose />
             );
           } else if (route.name === "MyGardenScreen") {
-            iconName = focused ? <IconLeaf color={"#28AF6E"} /> : <IconLeaf />;
+            iconName = focused ? (
+              <IconLeaf color={colors.PRIMARY_GREEN} />
+            ) : (
+              <IconLeaf />
+            );
           } else if (route.name === "ProfileScreen") {
             iconName = focused ? (
-              <IconProfile color={"#28AF6E"} />
+              <IconProfile color={colors.PRIMARY_GREEN} />
             ) : (
               <IconProfile />
             );
@@ -62,8 +70,8 @@ function BottomTabs() {
 
           return <View style={iconStyle}>{iconName}</View>;
         },
-        tabBarActiveTintColor: "#000",
-        tabBarInactiveTintColor: "#A1ADC4",
+        tabBarActiveTintColor: colors.BLACK,
+        tabBarInactiveTintColor: colors.TEXT_SECONDARY,
         tabBarStyle: {
           ...styles.tabBarStyle,
           height: 60 + insets.bottom,
@@ -150,7 +158,7 @@ export default function Router() {
   if (!initialRoute) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#28AF6E" />
+        <ActivityIndicator size="large" color={colors.PRIMARY_GREEN} />
       </View>
     );
   }
@@ -193,29 +201,29 @@ const styles = StyleSheet.create({
     borderTopWidth: 0.25,
     alignContent: "center",
     flexDirection: "column",
-    backgroundColor: "white",
-    borderTopColor: "#BDBDBD",
+    backgroundColor: colors.BACKGROUND_WHITE,
+    borderTopColor: colors.BORDER_LIGHT,
   },
   tabLabel: {
     fontSize: 12,
-    color: "#979798",
+    color: colors.TEXT_SECONDARY,
   },
   tabLabelFocused: {
     fontSize: 12,
-    color: "rgba(40, 175, 110, 1)",
+    color: colors.PRIMARY_GREEN,
   },
   profileTabLabelFocused: {
     fontSize: 12,
-    color: "green",
+    color: colors.PRIMARY_GREEN,
   },
   emptyLabel: {
     fontSize: 12,
-    color: "transparent",
+    color: colors.TRANSPARENT,
   },
   scanIconContainer: {
     position: "absolute",
     top: -40,
-    backgroundColor: "#28AF6E",
+    backgroundColor: colors.PRIMARY_GREEN,
     borderRadius: 50,
     elevation: 6,
     zIndex: 10,

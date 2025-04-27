@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import CustomText from "../ui/CustomText";
+import { colors } from "../../constants/colors";
 
 type PremiumFeatureCardProps = {
   title: string;
@@ -38,19 +39,19 @@ const styles = StyleSheet.create({
     padding: 16,
     minWidth: 170,
     minHeight: 130,
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    backgroundColor: colors.BACKGROUND_PREMIUM_CARD,
   },
   textContainer: {
     paddingTop: 12,
   },
   title: {
-    color: "white",
+    color: colors.TEXT_WHITE,
     fontSize: 22,
     letterSpacing: 0.38,
   },
   description: {
     fontSize: 14,
-    color: "white",
+    color: colors.TEXT_WHITE,
     opacity: 0.7,
     paddingTop: 4,
     letterSpacing: -0.08,

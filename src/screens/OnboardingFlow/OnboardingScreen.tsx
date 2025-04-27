@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import PaginationDots from "../../components/ui/PaginationDots";
+import { colors } from "../../constants/colors";
 
 type Props = {};
 
@@ -118,7 +119,7 @@ export default OnboardingScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.BACKGROUND_WHITE,
     marginVertical: 16,
   },
   wrapper: {
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
     bottom: "10%",
   },
   buttonText: {
-    color: "white",
+    color: colors.TEXT_WHITE,
     fontSize: 15,
   },
 });

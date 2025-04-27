@@ -11,6 +11,7 @@ import CustomText from "../../components/ui/CustomText";
 import CustomButton from "../../components/ui/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { colors } from "../../constants/colors";
 
 type Props = {};
 
@@ -76,7 +77,7 @@ export default GetStartedIntroScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: colors.BACKGROUND_WHITE,
   },
   innerContainer: {
     paddingVertical: 16,
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
   },
   subText: {
-    color: "#13231BB2",
+    color: colors.DARK_GREEN_TRANSPARENT,
     fontSize: 16,
     paddingTop: 8,
   },
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   buttonText: {
-    color: "white",
+    color: colors.TEXT_WHITE,
     fontSize: 15,
   },
   agreementContainer: {
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   },
   agreementText: {
     fontSize: 12,
-    color: "#13231BB2",
+    color: colors.LIGHT_GREEN_TRANSPARENT,
     textAlign: "center",
   },
   underlineText: {
