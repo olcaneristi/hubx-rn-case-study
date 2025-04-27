@@ -10,9 +10,12 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CustomText from "./CustomText";
+import CustomSearchBar from "./CustomSearchBar";
+import { getGreeting } from "../../utils/helper";
 
 const CustomHeader = () => {
   const insets = useSafeAreaInsets();
+  const { greeting, emoji } = getGreeting();
   return (
     <ImageBackground
       source={require("../../../assets/images/header-bg.png")}
@@ -21,15 +24,11 @@ const CustomHeader = () => {
     >
       <View>
         <CustomText style={styles.smallText}>Hi, plant lover!</CustomText>
-        <CustomText style={styles.largeText}>
-          Good Afternoon! <Text>☁️</Text>
+        <CustomText type="medium" style={styles.largeText}>
+          {greeting} <Text>{emoji}</Text>
         </CustomText>
 
-        <TextInput
-          placeholder="Search for plants"
-          style={styles.searchInput}
-          placeholderTextColor="#999"
-        />
+        <CustomSearchBar placeholder="Search for plants" />
       </View>
     </ImageBackground>
   );
@@ -44,20 +43,12 @@ const styles = StyleSheet.create({
   },
   smallText: {
     fontSize: 16,
-    color: "#333",
+    color: "#13231B",
+    letterSpacing: 0.07,
   },
   largeText: {
     fontSize: 24,
-    fontWeight: "bold",
-    color: "#1E3A8A",
-    marginBottom: 12,
-  },
-  searchInput: {
-    backgroundColor: "rgba(255, 255, 255, 0.88)",
-    borderRadius: 12,
-    paddingHorizontal: 24,
-    minHeight: 44,
-    borderWidth: 0.2,
-    borderColor: "rgba(60, 60, 67, 0.25)",
+    color: "#13231B",
+    letterSpacing: 0.35,
   },
 });

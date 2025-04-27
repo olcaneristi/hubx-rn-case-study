@@ -8,12 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import { fetchCategories } from "../store/slices/categoriesSlice";
 import { fetchQuestions } from "../store/slices/questionsSlice";
-import { StatusBar } from "expo-status-bar";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CustomText from "../components/ui/CustomText";
 
 const HomeScreen = () => {
-  const insets = useSafeAreaInsets();
   const dispatch = useDispatch<AppDispatch>();
   const categories = useSelector(
     (state: RootState) => state.categories.categories
@@ -33,22 +30,24 @@ const HomeScreen = () => {
       <ScrollView>
         <PromoBanner />
 
-        <CustomText style={styles.sectionTitle}>Get Started</CustomText>
-        <FlatList
-          data={questions}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <QuestionCard
-              title={item.title}
-              subtitle={item.subtitle}
-              imageUri={item.image_uri}
-              uri={item.uri}
-            />
-          )}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.horizontalList}
-        />
+        <View style={styles.questionViewContainer}>
+          <CustomText style={styles.sectionTitle}>Get Started</CustomText>
+          <FlatList
+            data={questions}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <QuestionCard
+                title={item.title}
+                subtitle={item.subtitle}
+                imageUri={item.image_uri}
+                uri={item.uri}
+              />
+            )}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.horizontalList}
+          />
+        </View>
 
         <FlatList
           data={categories}
@@ -70,15 +69,15 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  questionViewContainer: {
+    marginTop: 8,
+    paddingLeft: 24,
+  },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginTop: 16,
-    marginBottom: 8,
-    paddingHorizontal: 24,
+    fontSize: 17,
   },
   horizontalList: {
-    marginHorizontal: 24,
+    marginTop: 10,
     gap: 12,
   },
   verticalList: {
