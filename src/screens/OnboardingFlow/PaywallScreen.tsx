@@ -17,6 +17,7 @@ import IconFast from "../../../assets/icons/IconFast";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import PremiumFeatureCard from "../../components/cards/PremiumFeatureCard";
+import { setOnboardingCompleted } from "../../api/storage";
 
 type Props = {};
 
@@ -96,42 +97,12 @@ const PaywallScreen = (props: Props) => {
     ]).start();
   }, []);
 
-  const renderFeatureItem = ({ item }: { item: any }) => {
-    return (
-      <View
-        style={{
-          marginVertical: 16,
-          marginRight: 8,
-          borderRadius: 14,
-          padding: 16,
-          minWidth: 170,
-          minHeight: 130,
-          backgroundColor: "rgba(255, 255, 255, 0.1)",
-        }}
-      >
-        {item.icon}
-        <View style={{ paddingTop: 12 }}>
-          <CustomText
-            type="medium"
-            style={{ color: "white", fontSize: 22, letterSpacing: 0.38 }}
-          >
-            {item.title}
-          </CustomText>
-          <CustomText
-            type="regular"
-            style={{
-              fontSize: 14,
-              color: "white",
-              opacity: 0.7,
-              paddingTop: 4,
-              letterSpacing: -0.08,
-            }}
-          >
-            {item.description}
-          </CustomText>
-        </View>
-      </View>
-    );
+  const handleOnboardingComplete = async () => {
+    await setOnboardingCompleted();
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "BottomTabs" }],
+    });
   };
 
   return (
@@ -152,6 +123,7 @@ const PaywallScreen = (props: Props) => {
             top: "20%",
             right: "8%",
           }}
+          onPress={handleOnboardingComplete}
         >
           <IconClose />
         </CustomButton>
@@ -314,7 +286,7 @@ const PaywallScreen = (props: Props) => {
               marginRight: 24,
               marginVertical: 12,
             }}
-            onPress={() => navigation.navigate("BottomTabs")}
+            onPress={handleOnboardingComplete}
           >
             <CustomText type="medium" style={{ color: "white", fontSize: 16 }}>
               Try free for 3 days
