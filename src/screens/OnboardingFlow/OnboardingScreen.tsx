@@ -56,13 +56,11 @@ const OnboardingScreen = (props: Props) => {
 
   return (
     <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
-      <View style={{ flex: 1, marginVertical: 16 }}>
+      <View style={styles.wrapper}>
         <ImageBackground
           source={require("../../../assets/images/onboarding-bg-image.png")}
           resizeMode="contain"
-          style={{
-            flex: 1,
-          }}
+          style={styles.imageBgContainer}
           blurRadius={60}
         >
           <CustomText
@@ -90,40 +88,19 @@ const OnboardingScreen = (props: Props) => {
               <Animated.Image
                 source={require("../../../assets/images/onboarding-external-plant.png")}
                 resizeMode="contain"
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  right: 20,
-                  opacity: fadeAnim,
-                }}
+                style={[styles.absolutePlant, { opacity: fadeAnim }]}
               />
             )}
           </View>
-          <BlurView
-            intensity={5}
-            style={{
-              position: "absolute",
-              width: "100%",
-              paddingTop: 40,
-              bottom: "10%",
-            }}
-          >
+
+          <BlurView intensity={5} style={styles.blurContainer}>
             <CustomButton
-              style={{
-                backgroundColor: "#28AF6E",
-                marginHorizontal: 24,
-                marginBottom: 8,
-              }}
               activeOpacity={0.95}
               onPress={handleContinue}
-            >
-              <CustomText
-                type="semiBold"
-                style={{ color: "white", fontSize: 15 }}
-              >
-                Continue
-              </CustomText>
-            </CustomButton>
+              text={"Continue"}
+              textType={"semiBold"}
+              textStyle={styles.buttonText}
+            />
 
             <PaginationDots
               totalSteps={onboardingSteps.length}
@@ -142,6 +119,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    marginVertical: 16,
+  },
+  wrapper: {
+    flex: 1,
+    marginVertical: 16,
   },
   title: {
     fontSize: 28,
@@ -149,39 +131,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     letterSpacing: -1,
   },
+  imageBgContainer: {
+    flex: 1,
+  },
   image: {
     width: "100%",
     position: "relative",
   },
-  paginationContainer: {
-    flexDirection: "row",
-    marginTop: 30,
-    justifyContent: "center",
-    alignItems: "center",
+  absolutePlant: {
+    position: "absolute",
+    top: 0,
+    right: 20,
   },
-  dot: {
-    width: 6,
-    height: 6,
-    borderRadius: "100%",
-    marginHorizontal: 5,
-  },
-  activeDot: {
-    width: 10,
-    height: 10,
-    backgroundColor: "#34C759",
-  },
-  inactiveDot: {
-    backgroundColor: "#D3D3D3",
-  },
-  button: {
-    backgroundColor: "#34C759",
-    paddingVertical: 15,
-    paddingHorizontal: 60,
-    borderRadius: 10,
+  blurContainer: {
+    position: "absolute",
+    width: "100%",
+    paddingTop: 40,
+    bottom: "10%",
   },
   buttonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
+    color: "white",
+    fontSize: 15,
   },
 });

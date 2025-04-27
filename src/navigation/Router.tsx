@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, Text, View, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { getOnboardingCompleted } from "../api/storage";
+
+import CustomText from "../components/ui/CustomText";
 
 import GetStartedIntroScreen from "../../src/screens/OnboardingFlow/GetStartedIntroScreen";
 import OnboardingScreen from "../../src/screens/OnboardingFlow/OnboardingScreen";
@@ -20,34 +24,26 @@ import IconScan from "../../assets/icons/IconScan";
 import IconDiagnose from "../../assets/icons/IconDiagnose";
 import IconLeaf from "../../assets/icons/IconLeaf";
 import IconProfile from "../../assets/icons/IconProfile";
-import { getOnboardingCompleted } from "../api/storage";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function BottomTabs() {
   const insets = useSafeAreaInsets();
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarIcon: ({ focused }) => {
-          let iconStyle = {};
           let iconName;
+          let iconStyle = {};
 
           if (route.name === "HomeScreen") {
             iconName = focused ? <IconHome color={"#28AF6E"} /> : <IconHome />;
           } else if (route.name === "ScanPlantScreen") {
             iconName = <IconScan />;
-            iconStyle = {
-              position: "absolute",
-              top: -40,
-              backgroundColor: "#28AF6E",
-              borderRadius: 50,
-              elevation: 6,
-              zIndex: 10,
-              padding: 20,
-            };
+            iconStyle = styles.scanIconContainer;
           } else if (route.name === "DiagnoseScreen") {
             iconName = focused ? (
               <IconDiagnose color={"#28AF6E"} />
@@ -63,16 +59,13 @@ function BottomTabs() {
               <IconProfile />
             );
           }
+
           return <View style={iconStyle}>{iconName}</View>;
         },
         tabBarActiveTintColor: "#000",
         tabBarInactiveTintColor: "#A1ADC4",
         tabBarStyle: {
-          borderTopWidth: 0.25,
-          alignContent: "center",
-          flexDirection: "column",
-          backgroundColor: "white",
-          borderTopColor: "#BDBDBD",
+          ...styles.tabBarStyle,
           height: 60 + insets.bottom,
           paddingBottom: insets.bottom > 0 ? insets.bottom : 5,
         },
@@ -80,35 +73,27 @@ function BottomTabs() {
     >
       <Tab.Screen
         name="HomeScreen"
+        component={HomeScreen}
         options={{
-          headerShown: false,
           tabBarLabel: ({ focused }) => (
-            <Text
-              style={{
-                color: focused ? "rgba(40, 175, 110, 1)" : "#979798",
-                fontSize: 12,
-              }}
+            <CustomText
+              style={focused ? styles.tabLabelFocused : styles.tabLabel}
             >
               Home
-            </Text>
+            </CustomText>
           ),
         }}
-        component={HomeScreen}
       />
       <Tab.Screen
         name="DiagnoseScreen"
         component={DiagnoseScreen}
         options={{
-          headerShown: false,
           tabBarLabel: ({ focused }) => (
-            <Text
-              style={{
-                color: focused ? "rgba(40, 175, 110, 1)" : "#979798",
-                fontSize: 12,
-              }}
+            <CustomText
+              style={focused ? styles.tabLabelFocused : styles.tabLabel}
             >
               Diagnose
-            </Text>
+            </CustomText>
           ),
         }}
       />
@@ -116,14 +101,8 @@ function BottomTabs() {
         name="ScanPlantScreen"
         component={ScanPlantScreen}
         options={{
-          headerShown: false,
-          tabBarLabel: ({ focused }) => (
-            <Text
-              style={{
-                color: focused ? "rgba(40, 175, 110, 1)" : "#979798",
-                fontSize: 12,
-              }}
-            ></Text>
+          tabBarLabel: () => (
+            <CustomText style={styles.emptyLabel}></CustomText>
           ),
         }}
       />
@@ -131,16 +110,12 @@ function BottomTabs() {
         name="MyGardenScreen"
         component={MyGardenScreen}
         options={{
-          headerShown: false,
           tabBarLabel: ({ focused }) => (
-            <Text
-              style={{
-                color: focused ? "rgba(40, 175, 110, 1)" : "#979798",
-                fontSize: 12,
-              }}
+            <CustomText
+              style={focused ? styles.tabLabelFocused : styles.tabLabel}
             >
               My Garden
-            </Text>
+            </CustomText>
           ),
         }}
       />
@@ -148,13 +123,12 @@ function BottomTabs() {
         name="ProfileScreen"
         component={ProfileScreen}
         options={{
-          headerShown: false,
           tabBarLabel: ({ focused }) => (
-            <Text
-              style={{ color: focused ? "green" : "#979798", fontSize: 12 }}
+            <CustomText
+              style={focused ? styles.profileTabLabelFocused : styles.tabLabel}
             >
               Profile
-            </Text>
+            </CustomText>
           ),
         }}
       />
@@ -175,11 +149,12 @@ export default function Router() {
 
   if (!initialRoute) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#28AF6E" />
       </View>
     );
   }
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={initialRoute}>
@@ -207,3 +182,43 @@ export default function Router() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  tabBarStyle: {
+    borderTopWidth: 0.25,
+    alignContent: "center",
+    flexDirection: "column",
+    backgroundColor: "white",
+    borderTopColor: "#BDBDBD",
+  },
+  tabLabel: {
+    fontSize: 12,
+    color: "#979798",
+  },
+  tabLabelFocused: {
+    fontSize: 12,
+    color: "rgba(40, 175, 110, 1)",
+  },
+  profileTabLabelFocused: {
+    fontSize: 12,
+    color: "green",
+  },
+  emptyLabel: {
+    fontSize: 12,
+    color: "transparent",
+  },
+  scanIconContainer: {
+    position: "absolute",
+    top: -40,
+    backgroundColor: "#28AF6E",
+    borderRadius: 50,
+    elevation: 6,
+    zIndex: 10,
+    padding: 20,
+  },
+});

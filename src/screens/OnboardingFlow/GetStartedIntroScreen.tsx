@@ -20,24 +20,21 @@ const GetStartedIntroScreen = (props: Props) => {
 
   return (
     <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: "white",
-        paddingTop: Platform.OS === "android" ? insets.top : 0,
-      }}
+      style={[
+        styles.container,
+        { paddingTop: Platform.OS === "android" ? insets.top : 0 },
+      ]}
     >
-      <View style={{ paddingVertical: 16 }}>
-        <View style={{ paddingHorizontal: 24, marginTop: 16 }}>
-          <CustomText style={{ fontSize: 28 }}>
+      <View style={styles.innerContainer}>
+        <View style={styles.textContainer}>
+          <CustomText style={styles.text}>
             Welcome to{" "}
-            <CustomText type="bold" style={{ fontSize: 28 }}>
+            <CustomText type="bold" style={styles.text}>
               PlantApp
             </CustomText>
           </CustomText>
 
-          <CustomText
-            style={{ color: "#13231BB2", fontSize: 16, paddingTop: 8 }}
-          >
+          <CustomText style={styles.subText}>
             Identify more than 3000+ plants and 88% accuracy.
           </CustomText>
         </View>
@@ -45,45 +42,25 @@ const GetStartedIntroScreen = (props: Props) => {
         <Image
           source={require("../../../assets/images/get-started-image.png")}
           resizeMode="contain"
-          style={{
-            width: "100%",
-            height: "65%",
-            marginTop: 24,
-          }}
+          style={styles.heroImage}
         />
 
         <CustomButton
-          style={{
-            backgroundColor: "#28AF6E",
-            marginHorizontal: 24,
-            marginBottom: 8,
-          }}
           onPress={() => navigation.navigate("OnboardingScreen")}
-        >
-          <CustomText type="semiBold" style={{ color: "white", fontSize: 15 }}>
-            Get Started
-          </CustomText>
-        </CustomButton>
+          text={"Get Started"}
+          textType={"semiBold"}
+          textStyle={styles.buttonText}
+        />
 
         <View style={styles.agreementContainer}>
           <CustomText style={styles.agreementText}>
             By tapping next, you are agreeing to PlantID
-            <CustomText
-              style={[
-                styles.agreementText,
-                { textDecorationLine: "underline" },
-              ]}
-            >
+            <CustomText style={[styles.agreementText, styles.underlineText]}>
               {" "}
               Terms of Use
             </CustomText>{" "}
             &
-            <CustomText
-              style={[
-                styles.agreementText,
-                { textDecorationLine: "underline" },
-              ]}
-            >
+            <CustomText style={[styles.agreementText, styles.underlineText]}>
               {" "}
               Privacy Policy.
             </CustomText>
@@ -97,6 +74,34 @@ const GetStartedIntroScreen = (props: Props) => {
 export default GetStartedIntroScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+  innerContainer: {
+    paddingVertical: 16,
+  },
+  textContainer: {
+    paddingHorizontal: 24,
+    marginTop: 16,
+  },
+  text: {
+    fontSize: 28,
+  },
+  subText: {
+    color: "#13231BB2",
+    fontSize: 16,
+    paddingTop: 8,
+  },
+  heroImage: {
+    width: "100%",
+    height: "65%",
+    marginTop: 24,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 15,
+  },
   agreementContainer: {
     width: "60%",
     marginTop: 16,
@@ -107,5 +112,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#13231BB2",
     textAlign: "center",
+  },
+  underlineText: {
+    textDecorationLine: "underline",
   },
 });
