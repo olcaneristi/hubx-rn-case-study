@@ -4,20 +4,24 @@ import CustomText from "./ui/CustomText";
 import IconMessage from "../../assets/icons/IconMessage";
 import IconArrow from "../../assets/icons/IconArrow";
 import { colors } from "../constants/colors";
+import { PromoBannerProps } from "../interfaces/types";
 
-type Props = {};
-
-const PromoBanner = (props: Props) => {
+const PromoBanner = ({
+  title,
+  subtitle,
+  onPress,
+  leftIcon,
+}: PromoBannerProps) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.content}>
-        <IconMessage />
+        {leftIcon}
         <View style={styles.textContainer}>
           <CustomText type="semiBold" style={styles.title}>
-            FREE Premium Available
+            {title}
           </CustomText>
           <CustomText type="regular" style={styles.subtitle}>
-            Tap to upgrade your account!
+            {subtitle}
           </CustomText>
         </View>
       </View>

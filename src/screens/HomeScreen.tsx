@@ -9,26 +9,32 @@ import { AppDispatch, RootState } from "../store";
 import { fetchCategories } from "../store/slices/categoriesSlice";
 import { fetchQuestions } from "../store/slices/questionsSlice";
 import CustomText from "../components/ui/CustomText";
+import IconMessage from "../../assets/icons/IconMessage";
 
 const HomeScreen = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const categories = useSelector(
-    (state: RootState) => state.categories.categories
+  const questions = useSelector<RootState, Questions[]>(
+    (state) => state.questions.questions
   );
-  const questions = useSelector(
-    (state: RootState) => state.questions.questions
+  const categories = useSelector<RootState, Category[]>(
+    (state) => state.categories.categories
   );
 
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchQuestions());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
       <CustomHeader />
       <ScrollView>
-        <PromoBanner />
+        <PromoBanner
+          leftIcon={<IconMessage />}
+          title={"FREE Premium Available"}
+          subtitle={"Tap to upgrade your account!"}
+          onPress={() => alert("Hello!")}
+        />
 
         <View style={styles.questionViewContainer}>
           <CustomText style={styles.sectionTitle}>Get Started</CustomText>
