@@ -1,22 +1,12 @@
-import {
-  Image,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Image, Platform, SafeAreaView, StyleSheet, View } from "react-native";
 import React from "react";
 import CustomText from "../../components/ui/CustomText";
 import CustomButton from "../../components/ui/CustomButton";
-import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors } from "../../constants/colors";
+import { navigate } from "../../utils/helper";
 
-type Props = {};
-
-const GetStartedIntroScreen = (props: Props) => {
-  const navigation = useNavigation();
+const GetStartedIntroScreen = () => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -47,7 +37,7 @@ const GetStartedIntroScreen = (props: Props) => {
         />
 
         <CustomButton
-          onPress={() => navigation.navigate("OnboardingScreen")}
+          onPress={() => navigate("OnboardingScreen")}
           text={"Get Started"}
           textType={"semiBold"}
           textStyle={styles.buttonText}

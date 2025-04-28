@@ -21,10 +21,14 @@ import PremiumFeatureCard from "../../components/cards/PremiumFeatureCard";
 import { setOnboardingCompleted } from "../../api/storage";
 import CustomRadioGroup from "../../components/ui/CustomRadioGroup";
 import { colors } from "../../constants/colors";
+import { reset } from "../../utils/helper";
+import {
+  AllFeature,
+  PricingOption,
+  TermCondition,
+} from "../../interfaces/types";
 
-type Props = {};
-
-const allFeatures = [
+const allFeatures: AllFeature[] = [
   {
     id: 1,
     title: "Unlimited",
@@ -45,7 +49,7 @@ const allFeatures = [
   },
 ];
 
-const pricingOptions = [
+const pricingOptions: PricingOption[] = [
   {
     id: 1,
     key: "monthly",
@@ -62,7 +66,7 @@ const pricingOptions = [
   },
 ];
 
-const termsAndConditions = [
+const termsAndConditions: TermCondition[] = [
   {
     id: 1,
     title: "Terms",
@@ -77,9 +81,9 @@ const termsAndConditions = [
   },
 ];
 
-const PaywallScreen = (props: Props) => {
+const PaywallScreen = () => {
   const navigation = useNavigation();
-  const [selectedPlan, setSelectedPlan] = useState("yearly");
+  const [selectedPlan, setSelectedPlan] = useState<string>("yearly");
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const translateYAnim = useRef(new Animated.Value(100)).current;
 
@@ -102,10 +106,7 @@ const PaywallScreen = (props: Props) => {
 
   const handleOnboardingComplete = async () => {
     await setOnboardingCompleted();
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "BottomTabs" }],
-    });
+    reset("BottomTabs");
   };
 
   return (

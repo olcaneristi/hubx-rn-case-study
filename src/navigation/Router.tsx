@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getOnboardingCompleted } from "../api/storage";
 import { colors } from "../constants/colors";
 import CustomText from "../components/ui/CustomText";
+import { navigationRef } from "../utils/helper";
 
 import GetStartedIntroScreen from "../../src/screens/OnboardingFlow/GetStartedIntroScreen";
 import OnboardingScreen from "../../src/screens/OnboardingFlow/OnboardingScreen";
@@ -164,7 +165,7 @@ export default function Router() {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName={initialRoute}>
         <Stack.Screen
           name="GetStartedIntroScreen"

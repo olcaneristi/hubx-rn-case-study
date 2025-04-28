@@ -8,15 +8,14 @@ import {
 import React, { useRef, useState } from "react";
 import CustomText from "../../components/ui/CustomText";
 import CustomButton from "../../components/ui/CustomButton";
-import { useNavigation } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import PaginationDots from "../../components/ui/PaginationDots";
 import { colors } from "../../constants/colors";
+import { navigate } from "../../utils/helper";
+import { OnboardingStep } from "../../interfaces/types";
 
-type Props = {};
-
-const onboardingSteps = [
+const onboardingSteps: OnboardingStep[] = [
   {
     id: 1,
     title: "Take a photo to identify the plant!",
@@ -29,16 +28,14 @@ const onboardingSteps = [
   },
 ];
 
-const OnboardingScreen = (props: Props) => {
+const OnboardingScreen = () => {
   const insets = useSafeAreaInsets();
-  const [step, setStep] = useState(0);
-  const fadeAnim = useRef(new Animated.Value(1)).current;
-
-  const navigation = useNavigation();
+  const [step, setStep] = useState<number>(0);
+  const fadeAnim = useRef<Animated.Value>(new Animated.Value(1)).current;
 
   const handleContinue = () => {
     if (step === onboardingSteps.length - 1) {
-      navigation.navigate("PaywallScreen");
+      navigate("PaywallScreen");
       return;
     }
     Animated.timing(fadeAnim, {
