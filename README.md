@@ -7,6 +7,10 @@ The main objectives of this case study are:
 - Leveraging modern React Native/Expo libraries and best practices
 - Providing a smooth and responsive user experience
 
+## 🎥 Live Demo
+
+[Live Demo Here (Expo Snack)](https://snack.expo.dev/@olcaneristi/915742?platform=ios)
+
 ## 🛠️ Technologies Used
 
 - [Expo](https://expo.dev/)
