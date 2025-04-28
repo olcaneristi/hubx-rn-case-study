@@ -2,15 +2,12 @@ import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 import React from "react";
 import IconSearch from "../../../assets/icons/IconSearch";
 import { colors } from "../../constants/colors";
+import { CustomSearchBarProps } from "../../interfaces/types";
 
-type CustomSearchBarProps = {
-  placeholder?: string;
-} & TextInputProps;
-
-const CustomSearchBar: React.FC<CustomSearchBarProps> = ({
+const CustomSearchBar = ({
   placeholder = "Search",
   ...props
-}) => {
+}: CustomSearchBarProps) => {
   return (
     <View style={styles.container}>
       <IconSearch style={styles.icon} />

@@ -3,22 +3,13 @@ import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import CustomText from "../ui/CustomText";
 import { colors } from "../../constants/colors";
+import { SelectedPlanProps } from "../../interfaces/types";
 
-type PricingOption = {
-  id: number;
-  key: string;
-  title: string;
-  description: string;
-  hasDiscount: boolean;
-};
-
-type Props = {
-  options: PricingOption[];
-  selectedPlan: string;
-  onSelectPlan: (planKey: string) => void;
-};
-
-const CustomRadioGroup = ({ options, selectedPlan, onSelectPlan }: Props) => {
+const CustomRadioGroup = ({
+  options,
+  selectedPlan,
+  onSelectPlan,
+}: SelectedPlanProps) => {
   return (
     <View style={styles.container}>
       {options.map((option) => (

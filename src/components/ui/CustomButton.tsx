@@ -1,29 +1,10 @@
-import {
-  StyleSheet,
-  Text,
-  TextStyle,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  View,
-  ViewStyle,
-} from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import CustomText from "./CustomText";
-import { fonts } from "../../constants/fonts";
 import { colors } from "../../constants/colors";
+import { CustomButtonProps } from "../../interfaces/types";
 
-type FontType = keyof typeof fonts;
-
-type Props = {
-  text?: string;
-  textStyle?: TextStyle;
-  textType?: FontType;
-  style?: ViewStyle;
-  hasChildren?: boolean;
-  children?: React.ReactNode;
-} & TouchableOpacityProps;
-
-const CustomButton: React.FC<Props> = ({
+const CustomButton = ({
   text,
   textStyle,
   textType = "regular",
@@ -31,7 +12,7 @@ const CustomButton: React.FC<Props> = ({
   hasChildren = false,
   children,
   ...props
-}) => {
+}: CustomButtonProps) => {
   return (
     <TouchableOpacity {...props} style={[styles.button, style]}>
       {hasChildren

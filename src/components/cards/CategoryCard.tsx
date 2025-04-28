@@ -7,13 +7,9 @@ import {
 } from "react-native";
 import CustomText from "../ui/CustomText";
 import { colors } from "../../constants/colors";
+import { CategoryCardProps } from "../../interfaces/types";
 
-type Props = {
-  title: string;
-  imageUri: string;
-};
-
-const CategoryCard = ({ title, imageUri }: Props) => {
+const CategoryCard = ({ title, imageUri }: CategoryCardProps) => {
   return (
     <TouchableOpacity style={styles.card} onPress={() => alert("Hello!")}>
       <ImageBackground

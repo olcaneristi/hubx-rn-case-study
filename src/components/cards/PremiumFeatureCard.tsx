@@ -2,12 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import CustomText from "../ui/CustomText";
 import { colors } from "../../constants/colors";
-
-type PremiumFeatureCardProps = {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-};
+import { PremiumFeatureCardProps } from "../../interfaces/types";
 
 const PremiumFeatureCard = ({
   title,

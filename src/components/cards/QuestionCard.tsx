@@ -2,15 +2,9 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import CustomText from "../ui/CustomText";
 import { colors } from "../../constants/colors";
+import { QuestionCardProps } from "../../interfaces/types";
 
-type Props = {
-  title: string;
-  subtitle: string;
-  imageUri: string;
-  uri: string;
-};
-
-const QuestionCard = ({ title, subtitle, imageUri }: Props) => {
+const QuestionCard = ({ title, subtitle, imageUri }: QuestionCardProps) => {
   return (
     <Pressable
       style={styles.card}

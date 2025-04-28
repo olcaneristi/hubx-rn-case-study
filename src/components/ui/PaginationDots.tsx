@@ -1,11 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
-
-type PaginationDotsProps = {
-  totalSteps: number;
-  currentStep: number;
-};
+import { PaginationDotsProps } from "../../interfaces/types";
 
 const PaginationDots = ({ totalSteps, currentStep }: PaginationDotsProps) => {
   return (

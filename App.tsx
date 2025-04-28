@@ -7,11 +7,9 @@ import { fonts } from "./src/constants/fonts";
 import { store } from "./src/store";
 import { Provider } from "react-redux";
 
-type Props = {};
-
 SplashScreen.preventAutoHideAsync();
 
-const App = (props: Props) => {
+const App = () => {
   const [loaded, error] = useFonts({
     [fonts.light]: require("./assets/fonts/Rubik-Light.ttf"),
     [fonts.regular]: require("./assets/fonts/Rubik-Regular.ttf"),
@@ -39,5 +37,3 @@ const App = (props: Props) => {
 };
 
 export default App;
-
-const styles = StyleSheet.create({});
